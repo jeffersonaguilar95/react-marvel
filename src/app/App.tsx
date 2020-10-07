@@ -15,7 +15,7 @@ function  App() {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <Router basepath="/">
+        <Router basepath={process.env.PUBLIC_URL}>
           <Home path="/" />
           <Dash path="dashboard" />
         </Router>
