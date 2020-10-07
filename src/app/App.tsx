@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, RouteComponentProps } from "@reach/router"
+import { Router, LocationProvider, createHistory, RouteComponentProps } from "@reach/router"
 import {
   createMuiTheme,
   ThemeProvider,
@@ -12,13 +12,18 @@ let Dash = (props: RouteComponentProps) => <div>Dash</div>;
 const theme = createMuiTheme();
 
 function  App() {
+  // @ts-ignore
+  const history = createHistory(window);
+
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <Router basepath={process.env.PUBLIC_URL}>
-          <Home path="/" />
-          <Dash path="dashboard" />
-        </Router>
+        <LocationProvider history={history}>
+          <Router>
+            <Home path="/" />
+            <Dash path="dashboard" />
+          </Router>
+        </LocationProvider>
       </Layout>
     </ThemeProvider>
   );
