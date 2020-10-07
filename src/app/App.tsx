@@ -1,17 +1,14 @@
-import React from 'react';
-import { Router, RouteComponentProps } from "@reach/router"
-import {
-  createMuiTheme,
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import * as React from 'react'
+import { Router, RouteComponentProps } from '@reach/router'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import Layout from './Layout/Layout'
 
-let Home = (props: RouteComponentProps) => <div>Home</div>;
-let Dash = (props: RouteComponentProps) => <div>Dash</div>;
+const Home = (props: RouteComponentProps) => <div>Home</div>
+const Dash = (props: RouteComponentProps) => <div>Dash</div>
 
-const theme = createMuiTheme();
+const theme = createMuiTheme()
 
-function  App() {
+const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
@@ -21,7 +18,7 @@ function  App() {
         </Router>
       </Layout>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App
