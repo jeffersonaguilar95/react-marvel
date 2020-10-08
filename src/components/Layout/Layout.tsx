@@ -13,17 +13,45 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Box,
+  SvgIconProps
 } from '@material-ui/core'
 import {
   Menu as MenuIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
-  MoveToInbox as InboxIcon,
-  Mail as MailIcon,
+  Group as GroupIcon,
+  Event as EventIcon,
+  Receipt as ReceiptIcon
 } from '@material-ui/icons'
+import { Link, RouteComponentProps } from '@reach/router'
 import useStyles from './useStyles'
 
-const Layout: React.FC = ({ children }) => {
+type Section = {
+  name: string
+  path: string
+  Icon: React.ComponentType<SvgIconProps>
+}
+
+const SECTIONS: Section[] = [
+  {
+    name: 'Characters',
+    path: 'characters',
+    Icon: GroupIcon
+  },
+  {
+    name: 'Events',
+    path: 'events',
+    Icon: EventIcon
+  },
+  {
+    name: 'Comics',
+    path: 'comics',
+    Icon: ReceiptIcon
+  }
+]
+
+const Layout: React.FC<RouteComponentProps> = ({ children }) => {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
@@ -42,7 +70,7 @@ const Layout: React.FC = ({ children }) => {
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: open
         })}
       >
         <Toolbar>
@@ -52,7 +80,7 @@ const Layout: React.FC = ({ children }) => {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
-              [classes.hide]: open,
+              [classes.hide]: open
             })}
           >
             <MenuIcon />
@@ -66,13 +94,13 @@ const Layout: React.FC = ({ children }) => {
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.drawerClose]: !open
         })}
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
+            [classes.drawerClose]: !open
+          })
         }}
       >
         <div className={classes.toolbar}>
@@ -82,24 +110,21 @@ const Layout: React.FC = ({ children }) => {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {SECTIONS.map(({ name, path, Icon }, index) => (
+            <ListItem button key={`${name}-${index}`} component={Link} to={path}>
+              <ListItemIcon>
+                <Icon />
+              </ListItemIcon>
+              <ListItemText primary={name} />
             </ListItem>
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
-      <main className={classes.content}>{children}</main>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Box display="flex">{children}</Box>
+      </main>
     </div>
   )
 }
