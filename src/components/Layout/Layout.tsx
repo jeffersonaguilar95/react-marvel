@@ -123,7 +123,9 @@ const Layout: React.FC<RouteComponentProps> = ({ children }) => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Box display="flex">{children}</Box>
+        <Box display="flex" flexDirection="column">
+          {children}
+        </Box>
       </main>
     </div>
   )
