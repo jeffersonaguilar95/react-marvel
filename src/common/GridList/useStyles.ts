@@ -10,10 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
-      display: 'none',
-      [theme.breakpoints.up('sm')]: {
-        display: 'block'
-      }
+      display: 'block'
     },
     search: {
       position: 'relative',
@@ -23,10 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: fade(theme.palette.common.white, 0.25)
       },
       marginLeft: 0,
-      width: '100%',
+      width: 'auto',
       [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto'
+        marginLeft: theme.spacing(1)
       }
     },
     searchIcon: {
@@ -46,13 +42,13 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
       transition: theme.transitions.create('width'),
       width: '100%',
-      [theme.breakpoints.up('xs')]: {
-        width: '20ch',
+      [theme.breakpoints.down('sm')]: {
+        width: '0ch',
         '&:focus': {
-          width: '25ch'
+          width: '100%'
         }
       },
-      [theme.breakpoints.up('lg')]: {
+      [theme.breakpoints.up('md')]: {
         width: '30ch',
         '&:focus': {
           width: '40ch'
