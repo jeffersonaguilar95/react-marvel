@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
+import { Box, useMediaQuery } from '@material-ui/core'
 import { Pagination as MaterialPagination, PaginationProps } from '@material-ui/lab'
-import { Box } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles'
 
 type Props = {
   total: number
@@ -8,6 +9,9 @@ type Props = {
 }
 
 const Pagination: React.FC<PaginationProps & Props> = ({ total, limit, ...props }) => {
+  const theme = useTheme()
+  const isLargeDevice = useMediaQuery(theme.breakpoints.up('md'))
+
   const count = useMemo(() => {
     return Math.ceil(total / limit)
   }, [total, limit])
@@ -17,8 +21,8 @@ const Pagination: React.FC<PaginationProps & Props> = ({ total, limit, ...props 
       <MaterialPagination
         color="secondary"
         shape="rounded"
-        size="large"
-        siblingCount={3}
+        size={isLargeDevice ? 'large' : 'small'}
+        siblingCount={isLargeDevice ? 3 : 0}
         count={count}
         {...props}
       />
