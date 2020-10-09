@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps, Router } from '@reach/router'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { createMuiTheme, ThemeProvider, responsiveFontSizes } from '@material-ui/core/styles'
 import { grey, red } from '@material-ui/core/colors'
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
@@ -11,7 +11,7 @@ import Comics from '../Comics/Comics'
 import Creators from '../Creators/Creators'
 import Series from '../Series/Series'
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     primary: {
       main: grey[900]
@@ -21,6 +21,8 @@ const theme = createMuiTheme({
     }
   }
 })
+
+theme = responsiveFontSizes(theme)
 
 const queryCache = new QueryCache({
   defaultConfig: {
