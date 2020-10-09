@@ -86,10 +86,10 @@ const GridList: React.FC<RouteComponentProps & Props> = ({
         </Toolbar>
       </AppBar>
       {isFetching ? (
-        <GridListSkeleton cols={gridCols} rows={3} />
+        <GridListSkeleton cols={gridCols} rows={3} cellHeight={210} />
       ) : (
         <React.Fragment>
-          <MaterialGridList cellHeight={225} cols={gridCols}>
+          <MaterialGridList cellHeight={210} cols={gridCols}>
             {resolvedData.results.map((item: any, index: number) => (
               <GridListTile key={`${item.img}-${index}`}>
                 <img

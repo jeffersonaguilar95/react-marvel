@@ -1,20 +1,19 @@
 import * as React from 'react'
-import { Box, GridList } from '@material-ui/core'
+import { Box, GridList, GridListProps } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 
 type Props = {
-  cols?: number
   rows?: number
 }
 
-const GridListSkeleton: React.FC<Props> = ({ cols = 1, rows = 1 }) => {
+const GridListSkeleton: React.FC<GridListProps & Props> = ({ cols = 1, rows = 1, ...props }) => {
   const totalItems = Array.from(new Array(cols * rows))
   return (
-    <GridList cellHeight={225} cols={cols}>
-      {totalItems.map((character: any, index: number) => (
+    <GridList cols={cols} {...props}>
+      {totalItems.map((_: undefined, index: number) => (
         <Box key={`GridListSkeleton__${index}`} width={1}>
           <Skeleton variant="rect" height="100%" />
-          <Skeleton variant="text" height="35%" animation="wave" style={{ marginTop: '-65px' }} />
+          <Skeleton variant="text" height="35%" animation="wave" style={{ marginTop: '-63px' }} />
         </Box>
       ))}
     </GridList>

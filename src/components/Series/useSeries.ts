@@ -1,10 +1,8 @@
 import { usePaginatedQuery } from 'react-query'
 import api from 'api'
+import { CommonQueryParams } from 'types'
 
-type Params = {
-  page: number
-  orderBy?: string
-  limit?: string | number
+interface Params extends CommonQueryParams {
   titleStartsWith?: string | null
 }
 
