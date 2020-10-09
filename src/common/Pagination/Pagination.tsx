@@ -15,7 +15,7 @@ const Pagination: React.FC<PaginationProps & Props> = ({ total, limit, ...props 
   return (
     <Box display="flex" justifyContent="center" mt={3}>
       <MaterialPagination
-        color="primary"
+        color="secondary"
         shape="rounded"
         size="large"
         siblingCount={3}

@@ -1,12 +1,26 @@
 import * as React from 'react'
 import { RouteComponentProps, Router } from '@reach/router'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { grey, red } from '@material-ui/core/colors'
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
 import Layout from '../Layout/Layout'
 import Characters from '../Characters/Characters'
+import Events from '../Events/Events'
+import Comics from '../Comics/Comics'
+import Creators from '../Creators/Creators'
+import Series from '../Series/Series'
 
-const theme = createMuiTheme()
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: grey[900]
+    },
+    secondary: {
+      main: red[700]
+    }
+  }
+})
 
 const queryCache = new QueryCache({
   defaultConfig: {
@@ -26,6 +40,11 @@ const App: React.FC = () => {
           <Layout path="/">
             <Home default />
             <Characters path="/characters" />
+            <Events path="/events" />
+            <Comics path="/comics" />
+            <Creators path="/creators" />
+            <Creators path="/stories" />
+            <Series path="/series" />
           </Layout>
         </Router>
       </ThemeProvider>

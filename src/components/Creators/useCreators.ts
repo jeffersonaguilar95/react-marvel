@@ -3,17 +3,16 @@ import api from 'api'
 
 type Params = {
   page: number
-  events?: string
   orderBy?: string
   limit?: string | number
   nameStartsWith?: string | null
 }
 
-const getCharacters = async (key: string, params?: Params) => {
+const getCreators = async (key: string, params?: Params) => {
   try {
     const {
       data: { data }
-    } = await api.get('/characters', {
+    } = await api.get('/creators', {
       params
     })
 
@@ -23,8 +22,8 @@ const getCharacters = async (key: string, params?: Params) => {
   }
 }
 
-const useCharacters = (params?: Params) => {
-  return usePaginatedQuery(['characters', params], getCharacters)
+const useCreators = (params?: Params) => {
+  return usePaginatedQuery(['creators', params], getCreators)
 }
 
-export default useCharacters
+export default useCreators

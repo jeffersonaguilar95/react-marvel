@@ -22,7 +22,9 @@ import {
   ChevronRight as ChevronRightIcon,
   Group as GroupIcon,
   Event as EventIcon,
-  Receipt as ReceiptIcon
+  Receipt as ReceiptIcon,
+  SupervisedUserCircle as SupervisedUserCircleIcon,
+  Timeline as TimelineIcon
 } from '@material-ui/icons'
 import { Link, RouteComponentProps } from '@reach/router'
 import useStyles from './useStyles'
@@ -48,6 +50,16 @@ const SECTIONS: Section[] = [
     name: 'Comics',
     path: 'comics',
     Icon: ReceiptIcon
+  },
+  {
+    name: 'Creators',
+    path: 'creators',
+    Icon: SupervisedUserCircleIcon
+  },
+  {
+    name: 'Series',
+    path: 'series',
+    Icon: TimelineIcon
   }
 ]
 

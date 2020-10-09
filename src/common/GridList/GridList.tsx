@@ -62,7 +62,7 @@ const GridList: React.FC<RouteComponentProps & Props> = ({
 
   return (
     <Box display="flex" flexDirection="column" bgcolor="background.paper" pb={4}>
-      <AppBar position="static" color="transparent">
+      <AppBar position="static" color="secondary">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
             {title}
@@ -94,9 +94,9 @@ const GridList: React.FC<RouteComponentProps & Props> = ({
               <GridListTile key={`${item.img}-${index}`}>
                 <img
                   src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-                  alt={item.name || item.title}
+                  alt={item.name || item.title || item.fullName}
                 />
-                <GridListTileBar title={item.name || item.title} />
+                <GridListTileBar title={item.name || item.title || item.fullName} />
               </GridListTile>
             ))}
           </MaterialGridList>

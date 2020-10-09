@@ -2,22 +2,22 @@ import React from 'react'
 import { RouteComponentProps } from '@reach/router'
 import GridList from 'common/GridList/GridList'
 import { useDebounce, useFilters, usePagination } from 'hooks'
-import useCharacters from './useCharacters'
+import useCreators from './useCreators'
 
-const Characters: React.FC<RouteComponentProps> = () => {
+const Creators: React.FC<RouteComponentProps> = () => {
   const { page, setPage } = usePagination()
   const { filters, setFilter } = useFilters()
   const debouncedSearch = useDebounce(filters.search, 750)
 
-  const charactersQuery = useCharacters({
-    orderBy: 'name',
+  const charactersQuery = useCreators({
+    orderBy: 'firstName',
     page,
     nameStartsWith: !!debouncedSearch ? debouncedSearch : null
   })
 
   return (
     <GridList
-      title="Characters"
+      title="Creators"
       page={page}
       setPage={setPage}
       resourceQuery={charactersQuery}
@@ -27,4 +27,4 @@ const Characters: React.FC<RouteComponentProps> = () => {
   )
 }
 
-export default Characters
+export default Creators
