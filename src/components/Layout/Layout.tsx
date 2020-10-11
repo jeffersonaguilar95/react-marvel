@@ -22,6 +22,7 @@ import {
   ChevronRight as ChevronRightIcon,
   Group as GroupIcon,
   Event as EventIcon,
+  Home as HomeIcon,
   Receipt as ReceiptIcon,
   SupervisedUserCircle as SupervisedUserCircleIcon,
   Timeline as TimelineIcon
@@ -36,6 +37,11 @@ type Section = {
 }
 
 const SECTIONS: Section[] = [
+  {
+    name: 'Home',
+    path: '',
+    Icon: HomeIcon
+  },
   {
     name: 'Characters',
     path: 'characters',
@@ -135,7 +141,7 @@ const Layout: React.FC<RouteComponentProps> = ({ children }) => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Box display="flex" flexDirection="column">
+        <Box display="flex" flexDirection="column" flexGrow="1" className={classes.boxWrapper}>
           {children}
         </Box>
       </main>

@@ -1,9 +1,12 @@
 import * as React from 'react'
-import { RouteComponentProps, Router } from '@reach/router'
+import { Router } from '@reach/router'
 import { createMuiTheme, ThemeProvider, responsiveFontSizes } from '@material-ui/core/styles'
 import { grey, red } from '@material-ui/core/colors'
+import { Box, BoxProps } from '@material-ui/core'
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
+import { RouteComponentProps } from '@reach/router'
+import Home from '../Home/Home'
 import Layout from '../Layout/Layout'
 import Characters from '../Characters/Characters'
 import Events from '../Events/Events'
@@ -32,7 +35,7 @@ const queryCache = new QueryCache({
   }
 })
 
-const Home: React.FC<RouteComponentProps> = () => <div>Home</div>
+const Wrapper: React.FC<RouteComponentProps & BoxProps> = (props) => <Box {...props} />
 
 const App: React.FC = () => {
   return (
@@ -40,13 +43,15 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <Router basepath={process.env.PUBLIC_URL}>
           <Layout path="/">
-            <Home default />
-            <Characters path="/characters" />
-            <Events path="/events" />
-            <Comics path="/comics" />
-            <Creators path="/creators" />
-            <Creators path="/stories" />
-            <Series path="/series" />
+            <Home path="/" />
+            <Wrapper path="/" p={theme.spacing(0.3)}>
+              <Characters path="characters" />
+              <Events path="events" />
+              <Comics path="comics" />
+              <Creators path="creators" />
+              <Creators path="stories" />
+              <Series path="series" />
+            </Wrapper>
           </Layout>
         </Router>
       </ThemeProvider>

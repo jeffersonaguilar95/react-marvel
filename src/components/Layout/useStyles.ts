@@ -51,6 +51,12 @@ const useStyles = makeStyles((theme: Theme) =>
         width: theme.spacing(9) + 1
       }
     },
+    content: {
+      flexGrow: 1,
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column'
+    },
     toolbar: {
       display: 'flex',
       alignItems: 'center',
@@ -59,9 +65,10 @@ const useStyles = makeStyles((theme: Theme) =>
       // necessary for content to be below app bar
       ...theme.mixins.toolbar
     },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3)
+    boxWrapper: {
+      '& > div:first-child': {
+        height: '100%'
+      }
     }
   })
 )

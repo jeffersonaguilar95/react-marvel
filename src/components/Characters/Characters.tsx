@@ -12,7 +12,7 @@ const Characters: React.FC<RouteComponentProps> = () => {
   const charactersQuery = useCharacters({
     orderBy: 'name',
     page,
-    nameStartsWith: !!debouncedSearch ? debouncedSearch : null
+    nameStartsWith: debouncedSearch ? debouncedSearch : null
   })
 
   return (
