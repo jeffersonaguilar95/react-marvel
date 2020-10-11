@@ -27,12 +27,12 @@ theme = responsiveFontSizes(theme)
 const queryCache = new QueryCache({
   defaultConfig: {
     queries: {
-      refetchOnWindowFocus: false
+      staleTime: 5 * 60 * 1000
     }
   }
 })
 
-const Home: React.FC<RouteComponentProps> = (props) => <div>Home</div>
+const Home: React.FC<RouteComponentProps> = () => <div>Home</div>
 
 const App: React.FC = () => {
   return (
