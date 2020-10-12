@@ -40,7 +40,6 @@ const Wrapper: React.FC<RouteComponentProps> = ({ children }) => (
 )
 
 const App: React.FC = () => {
-  // console.log('REACT_APP_API_KEY---', process.env.REACT_APP_API_KEY)
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
       <ThemeProvider theme={theme}>
