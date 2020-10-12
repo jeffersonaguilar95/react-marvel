@@ -2,7 +2,7 @@
   "name": "react-marvel",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://jeffersonaguilar95.github.io/react-marvel",
+  "homepage": "/react-marvel/",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
