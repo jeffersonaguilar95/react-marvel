@@ -9,7 +9,7 @@ const Events: React.FC<RouteComponentProps> = () => {
   const { filters, setFilter } = useFilters()
   const debouncedSearch = useDebounce(filters.search, 750)
 
-  const charactersQuery = useEvents({
+  const eventsQuery = useEvents({
     orderBy: 'name',
     page,
     nameStartsWith: !!debouncedSearch ? debouncedSearch : null
@@ -20,9 +20,10 @@ const Events: React.FC<RouteComponentProps> = () => {
       title="Events"
       page={page}
       setPage={setPage}
-      resourceQuery={charactersQuery}
+      resourceQuery={eventsQuery}
       setFilter={setFilter}
       filters={filters}
+      displayKey="title"
     />
   )
 }

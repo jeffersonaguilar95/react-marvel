@@ -1,5 +1,9 @@
 {
+	"root": true,
 	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint"
+	],
 	"parserOptions": {
 		"ecmaVersion": 2020,
 		"sourceType": "module",
@@ -20,9 +24,11 @@
 	],
 	"rules": {
 		"react/prop-types": "off",
+		"no-unused-expressions": "off",
 		"@typescript-eslint/no-extra-boolean-cast": "off",
 		"@typescript-eslint/no-use-before-define": "off",
 		"@typescript-eslint/explicit-function-return-type": "off",
-		"@typescript-eslint/no-explicit-any": "off"
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-unused-expressions": "error"
 	}
 }

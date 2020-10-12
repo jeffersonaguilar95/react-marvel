@@ -1,12 +1,12 @@
-import { usePaginatedQuery } from 'react-query'
+import { PaginatedQueryResult, QueryKey, usePaginatedQuery } from 'react-query'
 import api from 'api'
-import { CommonQueryParams } from 'types'
+import { ComicsResponse, QueryParams } from 'interfaces'
 
-interface Params extends CommonQueryParams {
+interface Params extends QueryParams {
   titleStartsWith?: string | null
 }
 
-const getComics = async (key: string, params?: Params) => {
+const getComics = async (_: QueryKey, params?: Params): Promise<ComicsResponse> => {
   try {
     const {
       data: { data }
@@ -20,8 +20,6 @@ const getComics = async (key: string, params?: Params) => {
   }
 }
 
-const useComics = (params?: Params) => {
+export default function useComics(params?: Params): PaginatedQueryResult<ComicsResponse> {
   return usePaginatedQuery(['comics', params], getComics)
 }
-
-export default useComics

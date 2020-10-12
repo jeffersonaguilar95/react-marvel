@@ -9,7 +9,7 @@ const Comics: React.FC<RouteComponentProps> = () => {
   const { filters, setFilter } = useFilters()
   const debouncedSearch = useDebounce(filters.search, 750)
 
-  const charactersQuery = useComics({
+  const comicsQuery = useComics({
     orderBy: 'title',
     page,
     titleStartsWith: !!debouncedSearch ? debouncedSearch : null
@@ -20,9 +20,10 @@ const Comics: React.FC<RouteComponentProps> = () => {
       title="Comics"
       page={page}
       setPage={setPage}
-      resourceQuery={charactersQuery}
+      resourceQuery={comicsQuery}
       setFilter={setFilter}
       filters={filters}
+      displayKey="title"
     />
   )
 }

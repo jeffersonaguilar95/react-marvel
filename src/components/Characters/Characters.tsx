@@ -23,6 +23,7 @@ const Characters: React.FC<RouteComponentProps> = () => {
       resourceQuery={charactersQuery}
       setFilter={setFilter}
       filters={filters}
+      displayKey="name"
     />
   )
 }

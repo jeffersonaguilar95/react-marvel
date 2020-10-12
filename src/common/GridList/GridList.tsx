@@ -11,9 +11,9 @@ import {
 } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import { RouteComponentProps } from '@reach/router'
-import ReactQuery from 'react-query'
+import { PaginatedQueryResult } from 'react-query'
 import { useWidth } from 'hooks'
-import * as Types from 'types'
+import * as Types from 'interfaces'
 import Pagination from '../Pagination/Pagination'
 import GridListSkeleton from '../GridListSkeleton/GridListSkeleton'
 import useStyles from './useStyles'
@@ -30,9 +30,10 @@ interface Props {
   title: string
   page: number
   setPage: React.ComponentState
-  resourceQuery: ReactQuery.PaginatedQueryResult<any>
+  resourceQuery: PaginatedQueryResult<Types.MarvelResponse>
   filters: Types.Filters
   setFilter: Types.SetFilter
+  displayKey: string
 }
 
 const GridList: React.FC<RouteComponentProps & Props> = ({
@@ -41,12 +42,12 @@ const GridList: React.FC<RouteComponentProps & Props> = ({
   setPage,
   resourceQuery,
   filters,
-  setFilter
+  setFilter,
+  displayKey
 }) => {
   const classes = useStyles()
   const currentWidth = useWidth()
   const gridCols = COLS_BY_WIDTH[currentWidth] || 3
-  const { isFetching, resolvedData } = resourceQuery
 
   const handlePaginationChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setPage(page)
@@ -85,24 +86,23 @@ const GridList: React.FC<RouteComponentProps & Props> = ({
           </div>
         </Toolbar>
       </AppBar>
-      {isFetching ? (
+      {resourceQuery.isFetching ? (
         <GridListSkeleton cols={gridCols} rows={3} cellHeight={210} />
       ) : (
         <React.Fragment>
           <MaterialGridList cellHeight={210} cols={gridCols}>
-            {resolvedData.results.map((item: any, index: number) => (
-              <GridListTile key={`${item.img}-${index}`}>
-                <img
-                  src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-                  alt={item.name || item.title || item.fullName}
-                />
-                <GridListTileBar title={item.name || item.title || item.fullName} />
-              </GridListTile>
-            ))}
+            {(resourceQuery.resolvedData?.results as Array<Types.MarvelResource>).map(
+              (item: Types.MarvelResource, index: number) => (
+                <GridListTile key={`${item.modified}-${index}`}>
+                  <img alt={item.thumbnail.path} src={`${item.thumbnail.path}.${item.thumbnail.extension}`} />
+                  <GridListTileBar title={item[displayKey as keyof Types.MarvelResource]} />
+                </GridListTile>
+              )
+            )}
           </MaterialGridList>
           <Pagination
-            total={resolvedData.total}
-            limit={resolvedData.limit}
+            total={resourceQuery.resolvedData?.total}
+            limit={resourceQuery.resolvedData?.limit}
             onChange={handlePaginationChange}
             page={page}
           />

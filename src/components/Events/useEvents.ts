@@ -1,12 +1,12 @@
-import { usePaginatedQuery } from 'react-query'
+import { PaginatedQueryResult, QueryKey, usePaginatedQuery } from 'react-query'
 import api from 'api'
-import { CommonQueryParams } from 'types'
+import { QueryParams, EventsResponse } from 'interfaces'
 
-interface Params extends CommonQueryParams {
+interface Params extends QueryParams {
   nameStartsWith?: string | null
 }
 
-const getEvents = async (key: string, params?: Params) => {
+const getEvents = async (_: QueryKey, params?: Params): Promise<EventsResponse> => {
   try {
     const {
       data: { data }
@@ -20,8 +20,6 @@ const getEvents = async (key: string, params?: Params) => {
   }
 }
 
-const useEvents = (params?: Params) => {
+export default function useEvents(params?: Params): PaginatedQueryResult<EventsResponse> {
   return usePaginatedQuery(['events', params], getEvents)
 }
-
-export default useEvents

@@ -4,11 +4,11 @@ import { Pagination as MaterialPagination, PaginationProps } from '@material-ui/
 import { useTheme } from '@material-ui/core/styles'
 
 type Props = {
-  total: number
-  limit: number
+  total?: number
+  limit?: number
 }
 
-const Pagination: React.FC<PaginationProps & Props> = ({ total, limit, ...props }) => {
+const Pagination: React.FC<PaginationProps & Props> = ({ total = 0, limit = 0, ...props }) => {
   const theme = useTheme()
   const isLargeDevice = useMediaQuery(theme.breakpoints.up('md'))
 

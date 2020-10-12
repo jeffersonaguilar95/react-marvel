@@ -9,7 +9,7 @@ const Creators: React.FC<RouteComponentProps> = () => {
   const { filters, setFilter } = useFilters()
   const debouncedSearch = useDebounce(filters.search, 750)
 
-  const charactersQuery = useCreators({
+  const creatorsQuery = useCreators({
     orderBy: 'firstName',
     page,
     nameStartsWith: !!debouncedSearch ? debouncedSearch : null
@@ -20,9 +20,10 @@ const Creators: React.FC<RouteComponentProps> = () => {
       title="Creators"
       page={page}
       setPage={setPage}
-      resourceQuery={charactersQuery}
+      resourceQuery={creatorsQuery}
       setFilter={setFilter}
       filters={filters}
+      displayKey="fullName"
     />
   )
 }

@@ -1,12 +1,12 @@
-import { usePaginatedQuery } from 'react-query'
+import { PaginatedQueryResult, usePaginatedQuery } from 'react-query'
 import api from 'api'
-import { CommonQueryParams } from 'types'
+import { QueryParams, SeriesResponse } from 'interfaces'
 
-interface Params extends CommonQueryParams {
+interface Params extends QueryParams {
   titleStartsWith?: string | null
 }
 
-const getCreators = async (key: string, params?: Params) => {
+const getCreators = async (key: string, params?: Params): Promise<SeriesResponse> => {
   try {
     const {
       data: { data }
@@ -20,8 +20,6 @@ const getCreators = async (key: string, params?: Params) => {
   }
 }
 
-const useSeries = (params?: Params) => {
+export default function useSeries(params?: Params): PaginatedQueryResult<SeriesResponse> {
   return usePaginatedQuery(['series', params], getCreators)
 }
-
-export default useSeries

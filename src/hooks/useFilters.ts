@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Filters, SetFilter } from 'types'
+import { Filters, SetFilter } from 'interfaces'
 
 const useFilters = () => {
   const [filters, setFilters] = useState<Filters>({

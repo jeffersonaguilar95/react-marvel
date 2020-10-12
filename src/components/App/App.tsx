@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Router } from '@reach/router'
 import { createMuiTheme, ThemeProvider, responsiveFontSizes } from '@material-ui/core/styles'
 import { grey, red } from '@material-ui/core/colors'
-import { Box, BoxProps } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
 import { RouteComponentProps } from '@reach/router'
@@ -35,7 +35,9 @@ const queryCache = new QueryCache({
   }
 })
 
-const Wrapper: React.FC<RouteComponentProps & BoxProps> = (props) => <Box {...props} />
+const Wrapper: React.FC<RouteComponentProps> = ({ children }) => (
+  <Box p={theme.spacing(0.3)}>{children}</Box>
+)
 
 const App: React.FC = () => {
   return (
@@ -44,7 +46,7 @@ const App: React.FC = () => {
         <Router basepath={process.env.PUBLIC_URL}>
           <Layout path="/">
             <Home path="/" />
-            <Wrapper path="/" p={theme.spacing(0.3)}>
+            <Wrapper path="/">
               <Characters path="characters" />
               <Events path="events" />
               <Comics path="comics" />

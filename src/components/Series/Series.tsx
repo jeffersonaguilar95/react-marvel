@@ -9,7 +9,7 @@ const Series: React.FC<RouteComponentProps> = () => {
   const { filters, setFilter } = useFilters()
   const debouncedSearch = useDebounce(filters.search, 750)
 
-  const charactersQuery = useSeries({
+  const seriesQuery = useSeries({
     orderBy: 'title',
     page,
     titleStartsWith: !!debouncedSearch ? debouncedSearch : null
@@ -20,9 +20,10 @@ const Series: React.FC<RouteComponentProps> = () => {
       title="Series"
       page={page}
       setPage={setPage}
-      resourceQuery={charactersQuery}
+      resourceQuery={seriesQuery}
       setFilter={setFilter}
       filters={filters}
+      displayKey="title"
     />
   )
 }

@@ -1,28 +1,25 @@
-import { usePaginatedQuery } from 'react-query'
+import { usePaginatedQuery, PaginatedQueryResult, QueryKey } from 'react-query'
 import api from 'api'
-import { CommonQueryParams } from 'types'
+import { QueryParams, CharactersResponse } from 'interfaces'
 
-interface Params extends CommonQueryParams {
+interface Params extends QueryParams {
   events?: string
   nameStartsWith?: string | null
 }
 
-const getCharacters = async (key: string, params?: Params) => {
+const getCharacters = async (_: QueryKey, params?: Params): Promise<CharactersResponse> => {
   try {
     const {
       data: { data }
     } = await api.get('/characters', {
       params
     })
-
     return data
   } catch (e) {
     throw new Error(e.message)
   }
 }
 
-const useCharacters = (params?: Params) => {
+export default function useCharacters(params?: Params): PaginatedQueryResult<CharactersResponse> {
   return usePaginatedQuery(['characters', params], getCharacters)
 }
-
-export default useCharacters
