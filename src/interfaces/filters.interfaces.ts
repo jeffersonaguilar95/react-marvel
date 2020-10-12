@@ -1,13 +1,11 @@
 export interface Filters {
   search?: string
-  events?: string | number
-  comics?: string | number
+  events?: string
+  comics?: string
 }
 
-export type FilterKeys = 'search' | 'events' | 'comics'
-
-export type SetFilter = (filter: FilterKeys, value?: string | number) => void
+export type SetFilter = (filter: keyof Filters, value?: string | number) => void
 
 export interface FilterInputElement extends HTMLInputElement {
-  name: FilterKeys
+  name: keyof Filters
 }
